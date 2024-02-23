@@ -6,13 +6,13 @@ using Random = System.Random;
 
 public class DropManager : MonoBehaviour
 {
-    [SerializeField] private DropSystem dropSystem;
+    [SerializeField] private DropFactory dropFactory;
     [SerializeField] private ItemManager itemManager;
 
 
     public void SpawnItems()
     {
-        List<Item> drawnItems = dropSystem.GetRandomItem();
+        List<Item> drawnItems = dropFactory.GetRandomItem();
         SetUpItemAnimation(drawnItems);
     }
 

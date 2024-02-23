@@ -12,6 +12,7 @@ public class CurrencyManager : MonoBehaviour
     {
         return currencyValue;
     }
+    
     public void AddCurrency(int value)
     {
         currencyValue += value;

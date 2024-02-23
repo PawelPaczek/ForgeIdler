@@ -4,48 +4,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using Zenject;
 
 public class HammerController : MonoBehaviour
 {
     [SerializeField] private Transform hammer;
     [SerializeField] private Image particle;
     [SerializeField] private Animator coinsAnimator;
-    [SerializeField] private ForgingSkillsManager forgingSkillsManager;
+    [Inject][SerializeField] private SkillDatabase skillDatabase;
     [SerializeField] private DropManager dropManager;
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            RotateHammer();
-        }
-    }
-
+    private ForgeSkill automatizationSkill;
+    
     private void Start()
     {
-        if (forgingSkillsManager.forgingAutomatization.level  > 0)
+        ForgeSkill forgingAutomatizationSkill =
+            skillDatabase.GetSpecifiedSkill(ForgeSkill.SkillType.ForgingAutomatization);
+        if (forgingAutomatizationSkill == null) return;
+
+        if (forgingAutomatizationSkill.GetLevel() > 0)
         {
-            StartCoroutine(ShowParticleLoop());
+            StartCoroutine(ShowParticleLoop(forgingAutomatizationSkill));
         }
     }
 
     public void LevelUpAutomatization()
     {
-        if (forgingSkillsManager.forgingAutomatization.level > 0)
+        ForgeSkill forgingAutomatizationSkill =
+            skillDatabase.GetSpecifiedSkill(ForgeSkill.SkillType.ForgingAutomatization);
+        if (forgingAutomatizationSkill == null) return;
+
+        if (forgingAutomatizationSkill.GetLevel() > 0)
         {
-            StartCoroutine(ShowParticleLoop());
+            StartCoroutine(ShowParticleLoop(forgingAutomatizationSkill));
         }
     }
-    
-    private IEnumerator ShowParticleLoop()
+
+    private IEnumerator ShowParticleLoop(ForgeSkill forgingAutomatizationSkill)
     {
-        while (forgingSkillsManager.forgingAutomatization.level  > 0)
+        automatizationSkill = forgingAutomatizationSkill;
+        while (forgingAutomatizationSkill.GetLevel() > 0)
         {
             RotateHammer();
             yield return new WaitForSeconds(2f);
         }
     }
-    
+
     public void RotateHammer()
     {
         dropManager.SpawnItems();
@@ -58,12 +61,12 @@ public class HammerController : MonoBehaviour
         particle.DOFade(1, 0.2f).SetEase(Ease.Linear).OnComplete(() => particle.DOFade(0, 0.2f).SetEase(Ease.Linear));
         hammer.DOLocalRotate(new Vector3(0, 0, 0), 0.25f);
     }
-    
+
     private void OnDisable()
     {
-        if (ShowParticleLoop() != null)
+        if (ShowParticleLoop(automatizationSkill) != null)
         {
-            StopCoroutine(ShowParticleLoop());
+            StopCoroutine(ShowParticleLoop(automatizationSkill));
         }
     }
 }

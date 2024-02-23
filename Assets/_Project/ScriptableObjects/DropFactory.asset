@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 148016858a8e4c041a6aaaa6a5052625, type: 3}
-  m_Name: DropSystem
+  m_Name: DropFactory
   m_EditorClassIdentifier: 
   itemsPool:
   - {fileID: 11400000, guid: 0da0ca72c3eff6f4e9be28242bc3181a, type: 2}

@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e97c17a4c990d5b48a6cd09c2acd9617, type: 3}
-  m_Name: ForgingSpeed
+  m_Script: {fileID: 11500000, guid: 8798510c238ce5549b9ee3b7eccfb57a, type: 3}
+  m_Name: MyScriptableObjectInstaller
   m_EditorClassIdentifier: 
-  level: 0
-  name: Forging Speed
-  description: Speed up and forging by 10%
-  skillType: 3
-  levelUpCost: 010000000a00000064000000e8030000102700001027000010270000102700001027000010270000
+  skillDatabase: {fileID: 11400000, guid: 01c4293aae2c77c43bf09e6b26821b8e, type: 2}
