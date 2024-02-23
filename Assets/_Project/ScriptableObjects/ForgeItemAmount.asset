@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97c17a4c990d5b48a6cd09c2acd9617, type: 3}
+  m_Name: ForgeItemAmount
+  m_EditorClassIdentifier: 
+  level: 1
+  name: Forge Item Amount
+  description: +1 to the forging quantity of items
+  levelUpCost: 010000000a00000064000000e8030000102700001027000010270000102700001027000010270000
