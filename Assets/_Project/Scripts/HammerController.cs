@@ -5,7 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class HamerController : MonoBehaviour
+public class HammerController : MonoBehaviour
 {
     [SerializeField] private Transform hammer;
     [SerializeField] private Image particle;

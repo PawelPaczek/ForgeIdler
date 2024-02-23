@@ -12,7 +12,7 @@ public class ForgingSkillsManager : MonoBehaviour
     public ForgeSkill forgingSpeed;
     public ForgeSkill forgingAutomatization;
     [SerializeField] private ItemManager itemManager;
-    [SerializeField] private HamerController hamerController;
+    [SerializeField] private HammerController hammerController;
     [SerializeField] private CurrencyManager currencyManager;
     [SerializeField] private List<ForgeSkill> forgeSkills;
     [SerializeField] private List<SkillView> skillViews;
@@ -41,7 +41,7 @@ public class ForgingSkillsManager : MonoBehaviour
                 break;
             case 3:
                 TryUpgrade(forgingAutomatization,3);
-                hamerController.LevelUpAutomatization();
+                hammerController.LevelUpAutomatization();
                 break;
         }
     }
