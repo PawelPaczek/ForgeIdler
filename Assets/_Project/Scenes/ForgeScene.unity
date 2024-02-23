@@ -2133,11 +2133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cd670c83533eb47bb29eb734a95f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsPool:
-  - {fileID: 11400000, guid: 201162849fb7c8448963f0a50ae18154, type: 2}
-  - {fileID: 11400000, guid: 0da0ca72c3eff6f4e9be28242bc3181a, type: 2}
+  dropSystem: {fileID: 11400000, guid: 043b010fab8086a43b74136a80a272e3, type: 2}
   itemManager: {fileID: 1132583133}
-  forgingSkillsManager: {fileID: 1459528888}
 --- !u!1 &1451535549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2256,7 +2253,7 @@ MonoBehaviour:
   forgingSpeed: {fileID: 11400000, guid: 7e8bdd3feb7d94349b91956bf4ebfaff, type: 2}
   forgingAutomatization: {fileID: 11400000, guid: 1f190aafe02846940a3623414841b828, type: 2}
   itemManager: {fileID: 1132583133}
-  hamerController: {fileID: 1231987160}
+  hammerController: {fileID: 0}
   currencyManager: {fileID: 364615797}
   forgeSkills:
   - {fileID: 11400000, guid: d02f5f8b0929e364daf14f1141004945, type: 2}
