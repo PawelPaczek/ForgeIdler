@@ -94,6 +94,7 @@ MonoBehaviour:
   title: {fileID: 9061346330848147138}
   description: {fileID: 106481903690654959}
   cost: {fileID: 1242535650233811079}
+  button: {fileID: 4046722845902076734}
 --- !u!1 &2098871632831366923
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,6 +469,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4046722845902076734 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3243691474743859106, guid: 6016e60a65baa4346a9918e2f221551b, type: 3}
+  m_PrefabInstance: {fileID: 1525366538765429916}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &6721925745459378584 stripped

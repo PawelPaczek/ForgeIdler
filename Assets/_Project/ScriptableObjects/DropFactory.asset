@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 148016858a8e4c041a6aaaa6a5052625, type: 3}
+  m_Name: DropFactory
+  m_EditorClassIdentifier: 
+  itemsPool:
+  - {fileID: 11400000, guid: 0da0ca72c3eff6f4e9be28242bc3181a, type: 2}
+  - {fileID: 11400000, guid: 201162849fb7c8448963f0a50ae18154, type: 2}
+  forgeItemAmount: {fileID: 11400000, guid: d02f5f8b0929e364daf14f1141004945, type: 2}
+  forgingLevel: {fileID: 11400000, guid: 4408492d26f90904d96e6fc1f28881ee, type: 2}

@@ -2,57 +2,56 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class ForgingSkillsManager : MonoBehaviour
 {
-    private List<GameObject> itemSlots;
-    
-    public ForgeSkill forgeItemAmount;
-    public ForgeSkill forgingLevel;
-    public ForgeSkill forgingSpeed;
-    public ForgeSkill forgingAutomatization;
     [SerializeField] private ItemManager itemManager;
-    [SerializeField] private HamerController hamerController;
-    [SerializeField] private CurrencyManager currencyManager;
-    [SerializeField] private List<ForgeSkill> forgeSkills;
+    [SerializeField] private HammerController hammerController;
+    [Inject] [SerializeField] private CurrencyManager currencyManager;
+    [Inject] [SerializeField] private SkillDatabase skillDatabase;
+    [SerializeField] private GameObject skillViewPrefab;
+    [SerializeField] private Transform skillViewPrefabParent;
     [SerializeField] private List<SkillView> skillViews;
 
     private void Start()
     {
+        for (int i = 0; i < skillDatabase.GetForgeSkills().Count; i++)
+        {
+            CreatSkillButton(i);
+        }
+    }
+
+    private void CreatSkillButton(int i)
+    {
+        GameObject viewPrefab = Instantiate(skillViewPrefab, skillViewPrefabParent);
+        SkillView skillPrefabView = viewPrefab.GetComponent<SkillView>();
+        skillPrefabView.UpdateView(skillDatabase.GetForgeSkills()[i]);
+        skillViews.Add(skillPrefabView);
+        skillPrefabView.OnLevelUpClick += LevelUpSkill;
+    }
+    
+    public void LevelUpSkill(ForgeSkill skill, SkillView skillView)
+    {
+        TryUpgrade(skill, skillView);
+        hammerController.LevelUpAutomatization();
+    }
+
+    private void TryUpgrade(ForgeSkill skill, SkillView skillView)
+    {
+        if (currencyManager.GetCurrencyValue() > skill.GetLevelCost()[skill.GetLevel()])
+        {
+            currencyManager.RemoveCurrency(skill.GetLevelCost()[skill.GetLevel()]);
+            skill.AddLevel();
+            skillView.UpdateView(skill);
+        }
+    }
+
+    private void OnDisable()
+    {
         for (int i = 0; i < skillViews.Count; i++)
         {
-            skillViews[i].UpdateView(forgeSkills[i]);
-        }
-    }
-
-    public void LevelUpSkill(int skillIndex)
-    {
-        switch (skillIndex)
-        {
-            case 0:
-                TryUpgrade(forgeItemAmount,0);
-                itemManager.LevelUpForge();
-                break;
-            case 1:
-                TryUpgrade(forgingLevel,1);
-                break;
-            case 2:
-                TryUpgrade(forgingSpeed,2);
-                break;
-            case 3:
-                TryUpgrade(forgingAutomatization,3);
-                hamerController.LevelUpAutomatization();
-                break;
-        }
-    }
-
-    private void TryUpgrade(ForgeSkill skill,int index)
-    {
-        if ( currencyManager.GetCurrencyValue()>skill.levelUpCost[skill.level])
-        {
-            currencyManager.RemoveCurrency(skill.levelUpCost[skill.level]);
-            skill.level++;
-            skillViews[index].UpdateView(skill);
+            skillViews[i].OnLevelUpClick -= LevelUpSkill;
         }
     }
 }

@@ -6,60 +6,21 @@ using Random = System.Random;
 
 public class DropManager : MonoBehaviour
 {
-    public List<Item> itemsPool;
+    [SerializeField] private DropFactory dropFactory;
     [SerializeField] private ItemManager itemManager;
-    [SerializeField] private ForgingSkillsManager forgingSkillsManager;
 
-    public void SpawnItems()
-    {
-        int itemsAmountToPool = forgingSkillsManager.forgeItemAmount.level;
-        List<Item> conditionMeetingItems = DrawItemsFromPool();
-        List<Item> drawnItems = GetRandomItem(itemsAmountToPool,conditionMeetingItems);
-        SetUpItemAnimation(drawnItems);
-    }
 
-    private void SetUpItemAnimation(List<Item> drawnItems)
+    public void DrawItems()
     {
-        itemManager.SetItems( drawnItems);
-    }
-    
-    private List<Item> DrawItemsFromPool()
-    {
-        List<Item> conditionMeetingItems = new List<Item>();;
-
-        for (int i = 0; i < itemsPool.Count; i++)
+        List<Item> drawnItems = dropFactory.GetRandomItem();
+        if (drawnItems.Count > 0)
         {
-            if (forgingSkillsManager.forgingLevel.level >= itemsPool[i].GetLevelRequirement())
-            {
-                conditionMeetingItems.Add(itemsPool[i]);
-            }
+            GetItemsFromPool(drawnItems);
         }
-        
-        return conditionMeetingItems;
     }
-    
-    public List<Item> GetRandomItem(int itemsAmountToPool,List<Item> conditionMeetingItems)
+
+    private void GetItemsFromPool(List<Item> drawnItems)
     {
-        Random random = new Random();
-        List<Item> drawnItems = new List<Item>();
-
-        for (int i = 0; i < itemsAmountToPool; i++)
-        {
-            int los = random.Next(100);
-            int cumulativeChance = 0;
-
-            foreach (var item in conditionMeetingItems)
-            {
-
-                if (los < item.GetChanceToDrop())
-                {
-                    drawnItems.Add(item);
-                    break;
-                }
-            }
-        }
-
-        return drawnItems;
+        itemManager.SpawnItems(drawnItems);
     }
-
 }

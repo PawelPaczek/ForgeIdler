@@ -15,4 +15,5 @@ MonoBehaviour:
   level: 1
   name: Forging Level
   description: Improve to forge more expensive items
+  skillType: 2
   levelUpCost: 010000000a00000064000000e8030000102700001027000010270000102700001027000010270000
