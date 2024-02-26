@@ -18,14 +18,19 @@ public class ForgingSkillsManager : MonoBehaviour
     {
         for (int i = 0; i < skillDatabase.GetForgeSkills().Count; i++)
         {
-            GameObject viewPrefab = Instantiate(skillViewPrefab, skillViewPrefabParent);
-            SkillView skillPrefabView = viewPrefab.GetComponent<SkillView>();
-            skillPrefabView.UpdateView(skillDatabase.GetForgeSkills()[i]);
-            skillViews.Add(skillPrefabView);
-            skillPrefabView.OnLevelUpClick += LevelUpSkill;
+            CreatSkillButton(i);
         }
     }
 
+    private void CreatSkillButton(int i)
+    {
+        GameObject viewPrefab = Instantiate(skillViewPrefab, skillViewPrefabParent);
+        SkillView skillPrefabView = viewPrefab.GetComponent<SkillView>();
+        skillPrefabView.UpdateView(skillDatabase.GetForgeSkills()[i]);
+        skillViews.Add(skillPrefabView);
+        skillPrefabView.OnLevelUpClick += LevelUpSkill;
+    }
+    
     public void LevelUpSkill(ForgeSkill skill, SkillView skillView)
     {
         TryUpgrade(skill, skillView);
