@@ -34,7 +34,6 @@ public class ForgingSkillsManager : MonoBehaviour
     public void LevelUpSkill(ForgeSkill skill, SkillView skillView)
     {
         TryUpgrade(skill, skillView);
-        itemManager.LevelUpForge();
         hammerController.LevelUpAutomatization();
     }
 

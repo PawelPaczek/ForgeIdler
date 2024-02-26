@@ -19,8 +19,11 @@ public class DropFactory : ScriptableObject
         for (int i = 0; i < forgeItemAmount.GetLevel(); i++)
         {
             int los = random.Next(100);
-            int cumulativeChance = 0;
-
+            if (forgeItemAmount.GetLevel()<=1)
+            {
+                los = 1;
+            }
+            
             foreach (var item in DrawItemsFromPool())
             {
 

@@ -10,17 +10,17 @@ public class DropManager : MonoBehaviour
     [SerializeField] private ItemManager itemManager;
 
 
-    public void SpawnItems()
+    public void DrawItems()
     {
         List<Item> drawnItems = dropFactory.GetRandomItem();
-        SetUpItemAnimation(drawnItems);
+        if (drawnItems.Count > 0)
+        {
+            GetItemsFromPool(drawnItems);
+        }
     }
 
-    private void SetUpItemAnimation(List<Item> drawnItems)
+    private void GetItemsFromPool(List<Item> drawnItems)
     {
-        itemManager.SetItems(drawnItems);
+        itemManager.SpawnItems(drawnItems);
     }
-    
-
-
 }
